@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Segurança na Internet</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h1 { color: #1e293b; text-align: center; font-size: 1.5rem; margin-bottom: 20px; }
+        h2 { color: #334155; font-size: 1rem; margin-top: 20px; line-height: 1.4; }
+        .option { display: block; margin: 8px 0; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 0.95rem; }
+        .option:hover { background-color: #eef2ff; border-color: #4f46e5; }
+        input[type="radio"] { margin-right: 10px; }
+        button { width: 100%; padding: 14px; background-color: #4f46e5; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 25px; }
+        button:hover { background-color: #4338ca; }
+        
+        /* Estilo do Resultado */
+        #resultado { display: none; text-align: center; margin-top: 10px; }
+        #resultado h3 { color: #4f46e5; font-size: 1.8rem; margin: 10px 0; }
+        #mensagemResultado { font-size: 1rem; color: #475569; line-height: 1.6; margin-bottom: 20px; text-align: left; background: #f8fafc; padding: 15px; border-radius: 8px; border-left: 4px solid #4f46e5; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Quiz: Qual é o seu nível de Segurança Digital?</h1>
+
+    <!-- Formulário das 10 Perguntas -->
+    <form id="meuForm">
+        
+        <h2>1. Como você cria suas senhas?</h2>
+        <label class="option"><input type="radio" name="q1" value="1" required> Uso minha data de nascimento ou nome.</label>
+        <label class="option"><input type="radio" name="q1" value="2"> Misturo letras e números que lembram algo para mim.</label>
+        <label class="option"><input type="radio" name="q1" value="3"> Uso letras maiúsculas, minúsculas, números e caracteres especiais.</label>
+
+        <h2>2. Você utiliza a mesma senha em vários sites?</h2>
+        <label class="option"><input type="radio" name="q2" value="1" required> Sim, praticamente em todos.</label>
+        <label class="option"><input type="radio" name="q2" value="2"> Tenho algumas diferentes.</label>
+        <label class="option"><input type="radio" name="q2" value="3"> Cada conta possui uma senha diferente.</label>
+
+        <h2>3. O que faz quando vê um anúncio oferecendo um desconto enorme ou promoção imperdível?</h2>
+        <label class="option"><input type="radio" name="q3" value="1" required> Clico imediatamente.</label>
+        <label class="option"><input type="radio" name="q3" value="2"> Dou uma olhada e, se parecer verdadeira, clico.</label>
+        <label class="option"><input type="radio" name="q3" value="3"> Pesquiso a loja e verifico se a oferta é verdadeira.</label>
+
+        <h2>4. Como você utiliza redes Wi-Fi públicas?</h2>
+        <label class="option"><input type="radio" name="q4" value="1" required> Uso normalmente para qualquer coisa.</label>
+        <label class="option"><input type="radio" name="q4" value="2"> Evito acessar aplicativo de banco.</label>
+        <label class="option"><input type="radio" name="q4" value="3"> Evito usar ou utilizo apenas para tarefas simples.</label>
+
+        <h2>5. Antes de instalar um aplicativo, você costuma ler os Termos de Uso?</h2>
+        <label class="option"><input type="radio" name="q5" value="1" required> Nunca. Apenas clico em "Aceitar".</label>
+        <label class="option"><input type="radio" name="q5" value="2"> Leio apenas quando desconfio.</label>
+        <label class="option"><input type="radio" name="q5" value="3"> Costumo ler os principais pontos.</label>
+
+        <h2>6. O que faz quando um site pede muitas informações pessoais?</h2>
+        <label class="option"><input type="radio" name="q6" value="1" required> Informo tudo.</label>
+        <label class="option"><input type="radio" name="q6" value="2"> Informo se parecer confiável.</label>
+        <label class="option"><input type="radio" name="q6" value="3"> Informo somente o necessário.</label>
+
+        <h2>7. Você utiliza autenticação em dois fatores (2FA)?</h2>
+        <label class="option"><input type="radio" name="q7" value="1" required> Nunca.</label>
+        <label class="option"><input type="radio" name="q7" value="2"> Apenas em algumas contas.</label>
+        <label class="option"><input type="radio" name="q7" value="3"> Sempre que possível.</label>
+
+        <h2>8. Recebeu um e-mail dizendo que sua conta foi bloqueada. O que faz?</h2>
+        <label class="option"><input type="radio" name="q8" value="1" required> Clico no link do e-mail imediatamente.</label>
+        <label class="option"><input type="radio" name="q8" value="2"> Leio antes de decidir.</label>
+        <label class="option"><input type="radio" name="q8" value="3"> Entro diretamente pelo site ou app oficial (sem clicar no link).</label>
+
+        <h2>9. Como instala aplicativos no celular?</h2>
+        <label class="option"><input type="radio" name="q9" value="1" required> Baixo de qualquer lugar/site na internet.</label>
+        <label class="option"><input type="radio" name="q9" value="2"> Normalmente da loja oficial.</label>
+        <label class="option"><input type="radio" name="q9" value="3"> Apenas das lojas oficiais (Google Play / App Store).</label>
+
+        <h2>10. Antes de publicar fotos ou dados pessoais nas redes:</h2>
+        <label class="option"><input type="radio" name="q10" value="1" required> Publico sem pensar.</label>
+        <label class="option"><input type="radio" name="q10" value="2"> Às vezes penso antes.</label>
+        <label class="option"><input type="radio" name="q10" value="3"> Sempre verifico o que estou expondo.</label>
+
+        <button type="submit">Ver Meu Nível de Segurança</button>
+    </form>
+
+    <!-- Tela do Resultado Final -->
+    <div id="resultado">
+        <h2>Pontuação Final</h2>
+        <h3 id="pontosTotais">0 / 30 pontos</h3>
+        <p id="mensagemResultado"></p>
+        <button onclick="location.reload()">Refazer Quiz</button>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('meuForm');
+    const resultadoDiv = document.getElementById('resultado');
+    const pontosTotaisElement = document.getElementById('pontosTotais');
+    const mensagemResultadoElement = document.getElementById('mensagemResultado');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let totalPontos = 0;
+        const respostas = form.querySelectorAll('input[type="radio"]:checked');
+
+        respostas.forEach(resposta => {
+            totalPontos += parseInt(resposta.value);
+        });
+
+        form.style.display = 'none';
+        resultadoDiv.style.display = 'block';
+
+        pontosTotaisElement.textContent = totalPontos + " de 30 pontos";
+
+        // Lógica de Mensagens baseada na soma das respostas
+        if (totalPontos >= 25) {
+            mensagemResultadoElement.innerHTML = "<strong>Nível: NAVEGADOR BLINDADO 🛡️</strong><br><br>Parabéns! Você demonstra excelentes hábitos de segurança digital. Suas contas e dados pessoais estão muito bem protegidos contra golpes e invasões comuns.";
+        } else if (totalPontos >= 18) {
+            mensagemResultadoElement.innerHTML = "<strong>Nível: USUÁRIO PRECAVIDO ⚠️</strong><br><br>Você já adota bons hábitos, mas ainda deixa algumas brechas abertas. Fique atento ao uso de redes Wi-Fi públicas, repetição de senhas ou links em e-mails suspeitos.";
+        } else {
+            mensagemResultadoElement.innerHTML = "<strong>Nível: ALTO RISCO DE VULNERABILIDADE 🚨</strong><br><br>Cuidado! Seus hábitos na internet deixam seus dados e redes vulneráveis a invasões, golpes e roubo de senhas. Comece ativando a autenticação em dois fatores e usando senhas fortes e únicas para cada site.";
+        }
+    });
+</script>
+
+</body>
+</html>
